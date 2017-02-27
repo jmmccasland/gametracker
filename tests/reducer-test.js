@@ -41,10 +41,28 @@ module('reducer', () => {
 
   test('it can start looking for new games', (assert) => {
     const initialState = { ...defaultState };
-    const actionOne = { type: 'GAME@FIND_ALL:START' };
     const withGame = { ...defaultState, games: [gameOne] };
+    const actionOne = { type: 'GAME@FIND_ALL:START' };
 
     assert.deepEqual(reducer(initialState, actionOne), { ...initialState, loading: true });
     assert.deepEqual(reducer(withGame, actionOne), { ...initialState, games: [gameOne], loading: true });
+  });
+
+  test('it can add a new game that has not been saved', (assert) => {
+    const initialState = { ...defaultState };
+    const withGame = { ...defaultState, games: [gameOne] };
+    const actionOne = { type: 'GAME@CREATE:START' };
+
+    assert.deepEqual(reducer(initialState, actionOne), { ...initialState, loading: true });
+    assert.deepEqual(reducer(withGame, actionOne), { ...initialState, games: [gameOne], loading: true });
+  });
+
+  test('it can add a new game that HAS been saved', (assert) => {
+    const initialState = { ...defaultState };
+    const withGame = { ...defaultState, games: [gameOne] };
+    const actionOne = { type: 'GAME@CREATE:COMPLETE', data: gameTwo };
+
+    assert.deepEqual(reducer(initialState, actionOne), { ...initialState, games: [gameTwo] });
+    assert.deepEqual(reducer(withGame, actionOne), { ...initialState, games: [gameTwo, gameOne] });
   });
 });
