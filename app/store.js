@@ -8,7 +8,7 @@ const initialState = {
   loading: false,
   showOnlyAt: null, // 'home', 'campus'
   games: [],
- };
+};
 
 const store = createStore(
   reducer,

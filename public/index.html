@@ -6,6 +6,34 @@
   <link rel="stylesheet" href="/app.css">
 </head>
 <body>
+
+  <div class="app">
+    <form class="create-form">
+      <div class="control">
+        <input type="text" placeholder="Name" class="create-form__name">
+      </div>
+
+      <div class="control">
+        <input type="text" placeholder="Max Players" class="create-form__max-players">
+      </div>
+
+      <div class="control">
+        <input type="text" placeholder="Min Players" class="create-form__min-players">
+      </div>
+
+      <button class="create-form__submit">Submit</button>
+    </form>
+
+    <ul class="game-list">
+      <li class="game">
+      <h2 class="game__game">Name</h2>
+      <p class="game__players"># of Players</p>
+      <button class="game__on-campus active">On Campus?</button>
+      <button class="game__remove">X</button>
+
+      </li>
+    </ul>
+  </div>
   <script src="/app.js" charset="utf-8"></script>
 </body>
 </html>
