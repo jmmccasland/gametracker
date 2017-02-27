@@ -22,6 +22,21 @@ export default function reducer(state, action) {
         games: [action.data, ...state.games],
         loading: false
       };
+    case 'GAME@UPDATE:TOGGLE_ATCAMPUS':
+      return {
+        ...state,
+        games: state.games.map((game) => {
+          if (game._id === action.id) {
+            return { ...game, atCampus: !game.atCampus };
+          }
+          return game;
+        }),
+      };
+    case 'GAME@REMOVE:COMPLETE':
+      return {
+        ...state,
+        games: state.games.filter((game) => game._id !== action.id),
+      };
     default:
       return state || {
         loading: false,
